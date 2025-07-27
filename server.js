@@ -3,9 +3,13 @@ const app=express();
 const dotenv = require("dotenv");
 const connectDB=require('./config/db');
 dotenv.config();
-const Routes = require("./routes/userRoute");
+
 app.use(express.json());
+const Routes = require("./routes/userRoute");
+const roomRoutes=require('./routes/roomRoutes')
+
 app.use("/", Routes);
+app.use('/room',roomRoutes);
 
 const PORT= process.env.PORT || 3000;
 

@@ -20,7 +20,7 @@ exports.signup = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = new User({ name, email, password: hashedPassword });
+    const user = new User({ name, email, password: hashedPassword,role:role || 'renter' });
 
     await user.save();
     return res.status(200).json({
