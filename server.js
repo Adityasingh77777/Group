@@ -7,9 +7,11 @@ dotenv.config();
 app.use(express.json());
 const Routes = require("./routes/userRoute");
 const roomRoutes=require('./routes/roomRoutes')
+const bookRoutes=require('./routes/bookRoutes')
 
 app.use("/", Routes);
 app.use('/room',roomRoutes);
+app.use('/book',bookRoutes);
 
 const PORT= process.env.PORT || 3000;
 
