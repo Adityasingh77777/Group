@@ -30,6 +30,8 @@ exports.signup = async (req, res) => {
     return res.status(500).json({ error: "registration failed" });
   }
 };
+
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password)
@@ -67,6 +69,7 @@ exports.login = async (req, res) => {
       token
     });
   } catch (err) {
+     console.error("Login Error:", err);
     return res.status(500).json({
       message: "login failed",
     });
