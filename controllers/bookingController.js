@@ -46,3 +46,36 @@ exports.bookingStatus=async(req,res)=>{
 
     }
 }
+
+exports.confirmStatus=async(req,res)=>{
+    const {bookingId}=req.body;
+
+    if(!bookingId) return res.status(400).json({
+        error:"invalid booking Id"
+    })
+
+    try{
+        const booking=await Booking.findById(bookingId).populate("room");
+        if(!booking){
+            return res.status(404).json({
+                error:"Booking not found"
+            })
+        }
+
+        if(booking.room.owner.toString() !== req.user.id){
+            return res.status(403).json({
+                error:"only the owner can confirm the booking"
+            })
+        }
+
+        booking.status="confirmed";
+        await booking.save();
+        return res.status(200).json({
+            message:"Booking confirmed"
+        })
+    }catch(err){
+        return res.status(500).json({
+            error:"Confirmation cancelled"
+        })
+    }
+}
