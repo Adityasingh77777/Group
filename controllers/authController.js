@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 exports.signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password ,role} = req.body;
 
-  if (!name || !email || !password)
+  if (!name || !email || !password || !role)
     return res.status(400).json({
       error: "invalid input",
     });
@@ -57,7 +57,8 @@ exports.login = async (req, res) => {
     const payload={
       id:user._id,
       name:user.name,
-      email:user.email
+      email:user.email,
+      role:user.role
     }
 
     const token=jwt.sign(payload,process.env.JWT_SECRET,{
