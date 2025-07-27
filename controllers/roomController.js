@@ -3,11 +3,11 @@ const User=require('../models/User');
 
 exports.createRoom=async(req,res)=>{
 
-    console.log("Headers:",req.headers);
-    console.log("Body:",req.body);
+    // console.log("Headers:",req.headers);
+    // console.log("Body:",req.body);
 
     const {title,description,price,location,roomType} = req.body;
-    console.log(title);
+    // console.log(title);
 
     if (!title || !description || !price || !location || !roomType) {
     return res.status(400).json({
