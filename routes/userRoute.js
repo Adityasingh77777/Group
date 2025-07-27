@@ -7,6 +7,6 @@ const {users}=require("../controllers/userController");
 
 router.post("/signup",signup);
 router.post("/login",login);
-router.post("/users",users);
+router.get("/users",users);
 
 module.exports=router
