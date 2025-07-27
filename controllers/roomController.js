@@ -48,4 +48,19 @@ exports.createRoom=async(req,res)=>{
     }
 }
 
-// exports.getRoom=async()
+exports.getRoom=async(req,res)=>{
+    try{
+        const rooms=await Room.find();
+
+        return res.json({
+            success:true,
+            requestedBy:req.user.email,
+            data:rooms
+        })
+
+    }catch(err){
+        return res.status(500).json({
+            error:"Owner can't see anyone's rooms"
+        })
+    }
+}
