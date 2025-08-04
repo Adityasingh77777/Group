@@ -6,10 +6,10 @@ exports.createRoom=async(req,res)=>{
     // console.log("Headers:",req.headers);
     // console.log("Body:",req.body);
 
-    const {title,description,price,location,roomType} = req.body;
+    const {title,description,price,location,roomType,contactNo} = req.body;
     // console.log(title);
 
-    if (!title || !description || !price || !location || !roomType) {
+    if (!title || !description || !price || !location || !roomType || !contactNo) {
     return res.status(400).json({
       error: 'All fields are required'
     });
@@ -30,6 +30,7 @@ exports.createRoom=async(req,res)=>{
             location,
             roomType,
             owner:req.user.id,
+            contactNo
         })
 
         await room.save()

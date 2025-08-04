@@ -9,6 +9,8 @@ const Routes = require("./routes/userRoute");
 const roomRoutes=require('./routes/roomRoutes')
 const bookRoutes=require('./routes/bookRoutes')
 
+const cors = require("cors");
+app.use(cors());
 app.use("/", Routes);
 app.use('/room',roomRoutes);
 app.use('/book',bookRoutes);
